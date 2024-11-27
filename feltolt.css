@@ -1,0 +1,40 @@
+<?php
+if(isset($_POST['nev']) && isset($_POST['neme']) && isset($_POST['berlet']) && isset($_POST['szoveg']))
+{
+    if(!empty($_POST['nev']) && !empty($_POST['neme']) && !empty($_POST['berlet']) && !empty($_POST['szoveg']))
+    {
+        try 
+        {
+            $dbh = new PDO('mysql:host=localhost;dbname=nezok', 'root', '',
+                            array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+            $dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
+            
+            $sqlInsert = "insert into nezo(id, nev, neme, berlet, szoveg)
+                            values(0, :nev, :neme, :berlet, :szoveg)";
+            $stmt = $dbh->prepare($sqlInsert); 
+            $stmt->execute(array(':nev' => $_POST['nev'], ':neme' => $_POST['neme'],
+                                    ':szoveg' => $_POST['szoveg'])); 
+            if($count = $stmt->rowCount()) {
+                $newid = $dbh->lastInsertId();
+                $uzenet = "Név: ". $_POST["nev"]."<br>Neme: ".$_POST["neme"]."<br>Bérlet:<br>".$_POST["berlet"] ."<br>Szöveg:<br>".$_POST["szoveg"];                      
+                $ujra = false;
+            }
+            else {
+                $uzenet = "A Jelentkezés sikertelen.";  
+                $ujra = true;
+            }
+            
+        }
+        catch (PDOException $e) {
+            $uzenet = "Hiba: ".$e->getMessage();
+            $ujra = true;
+        }   
+    }
+    else
+    {
+        $uzenet = "Hiba: Nem megfelelően töltötted ki a mezőket";
+        $ujra = true;
+    }   
+}
+?>
+

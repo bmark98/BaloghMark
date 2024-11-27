@@ -1,0 +1,50 @@
+<?php
+// SOAP kliens létrehozása
+$options = array(
+    'location' => 'https://www.mnb.hu/arfolyamok',  // A Magyar Nemzeti Bank SOAP WSDL URL-je
+    'uri' => 'http://www.mnb.hu/soap/', // A SOAP URI-ja
+    'trace' => 1
+);
+
+// SOAP kliens létrehozása
+$client = new SoapClient("https://www.mnb.hu/arfolyamok.asmx?wsdl", $options);
+
+// A devizapár és dátum lekérdezésének metódusa
+function getExchangeRate($currencyPair, $date) {
+    global $client;
+    try {
+        // Lekérdezés az MNB SOAP szolgáltatásból
+        $params = array(
+            'currencyPair' => $currencyPair,  // Például: "EURHUF"
+            'date' => $date  // Dátum formátuma: 'YYYY-MM-DD'
+        );
+
+        // Eredmény lekérése
+        $result = $client->__soapCall('GetExchangeRate', array($params));
+
+        return $result;
+    } catch (SoapFault $e) {
+        return 'SOAP Hiba: ' . $e->getMessage();
+    }
+}
+
+// Devizapár lekérdezés egy adott hónapra
+function getMonthlyExchangeRates($currencyPair, $month, $year) {
+    global $client;
+    try {
+        // Lekérdezés az MNB SOAP szolgáltatásból
+        $params = array(
+            'currencyPair' => $currencyPair,  // Például: "EURHUF"
+            'month' => $month,  // Hónap: 1-12
+            'year' => $year  // Év: pl. 2024
+        );
+
+        // Eredmény lekérése
+        $result = $client->__soapCall('GetMonthlyExchangeRates', array($params));
+
+        return $result;
+    } catch (SoapFault $e) {
+        return 'SOAP Hiba: ' . $e->getMessage();
+    }
+}
+?>
