@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Üzenetek</title>
+    <style>
+        /* Alap stílusok */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigációs menü */
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            text-transform: uppercase;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+
+        /* Főoldal és egyéb szakaszok */
+        main {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #5C6BC0;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Mobilbarát stílusok */
+        @media screen and (max-width: 768px) {
+            table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Főoldal</a></li>
+            <li><a href="/kapcsolat">Kapcsolat</a></li>
+            <li><a href="/uzenetek">Üzenetek</a></li>
+            <li><a href="/crud">CRUD Műveletek</a></li>
+            <li><a href="/oop-javascript">OOP JavaScript</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Üzenetek</h1>
+        <table>
+            <tr>
+                <th>Név</th>
+                <th>Üzenet</th>
+                <th>Dátum</th>
+            </tr>
+            <tr>
+                <td>János</td>
+                <td>Ez egy teszt üzenet.</td>
+                <td>2024-11-25</td>
+            </tr>
+        </table>
+    </main>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Műveletek</title>
+    
+</head>
+<body>
+    <!-- Navigációs menü -->
+    <nav>
+        <ul>
+            <li><a href="/">Főoldal</a></li>
+            <li><a href="/kapcsolat">Kapcsolat</a></li>
+            <li><a href="/uzenetek">Üzenetek</a></li>
+            <li><a href="/crud">CRUD Műveletek</a></li>
+            <li><a href="/oop-javascript">OOP JavaScript</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>CRUD Muveletek</h1>
+        <h2>Uzenetek</h2>
+        <table>
+            <tr>
+                <th>Nev</th>
+                <th>Uzenet</th>
+                <th>Datum</th>
+                <th>Muvelet</th>
+            </tr>
+            <tr>
+                <td>János</td>
+                <td>Ez egy teszt üzenet.</td>
+                <td>2024-11-25 12:30</td>
+                <td>
+                    <a href="/crud/edit?id=1">Modosit</a> | 
+                    <a href="/crud/delete?id=1">Torol</a>
+                </td>
+            </tr>
+        </table>
+
+        <h3>Uj uzenet hozzaadas</h3>
+        <form action="/crud" method="POST">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" required>
+
+            <label for="name">Nev:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="message">Uzenet:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <label for="created_at">Datum:</label>
+            <input type="text" id="created_at" name="created_at" required>
+
+            <button type="submit">Hozzadas</button>
+        </form>
+    </main>
+    <style>
+        /* Alap stílusok */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigációs menü */
+        nav {
+            background-color: #007BFF;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            font-size: 18px;
+            padding: 12px 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+
+        /* Fő szakasz */
+        main {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #004085;
+            margin-bottom: 30px;
+            font-size: 3em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h2, h3 {
+            color: #333;
+            margin-top: 30px;
+        }
+
+        /* Táblázat formázás */
+        table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            font-size: 1.2em;
+        }
+
+        th {
+            background-color: #28a745;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        tr:hover {
+            background-color: #eafaf1;
+            transform: scale(1.01);
+            transition: 0.3s;
+        }
+
+        td {
+            color: #555;
+        }
+
+        td a {
+            color: #007BFF;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        td a:hover {
+            color: #0056b3;
+        }
+
+        /* Formák */
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 30px auto;
+            text-align: left;
+        }
+
+        form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        form input[type="text"],
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        form button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #218838;
+        }
+
+        /* Mobil optimalizálás */
+        @media (max-width: 768px) {
+            table {
+                width: 90%;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 0;
+            }
+
+            nav ul li {
+                margin-bottom: 10px;
+            }
+
+            form {
+                width: 100%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</body>
+</html>

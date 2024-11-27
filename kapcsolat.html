@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kapcsolat</title>
+    <style>
+        /* Reset stílusok */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigációs menü */
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            text-transform: uppercase;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+
+        /* Formázás */
+        main {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            border-color: #5C6BC0;
+            outline: none;
+        }
+
+        button {
+            background-color: #5C6BC0;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3949AB;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Főoldal</a></li>
+            <li><a href="/kapcsolat">Kapcsolat</a></li>
+            <li><a href="/uzenetek">Üzenetek</a></li>
+            <li><a href="/crud">CRUD Műveletek</a></li>
+            <li><a href="/oop-javascript">OOP JavaScript</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Kapcsolatfelvételi űrlap</h1>
+        <form action="/kapcsolat" method="POST">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" required>
+
+            <label for="name">Név:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="message">Üzenet:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <label for="created_at">Dátum:</label>
+            <input type="text" id="created_at" name="created_at" required>
+
+            <button type="submit">Üzenet küldése</button>
+        </form>
+    </main>
+</body>
+</html>
